@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Светлана Крук](https://up.htmlacademy.ru/javascript/31/user/2414895).
-* Наставник: `Неизвестно`.
+* Наставник: [Анастасия Гущина](https://htmlacademy.ru/profile/vanastasiya).
 
 ---
 
