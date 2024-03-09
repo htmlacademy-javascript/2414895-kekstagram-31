@@ -7,7 +7,7 @@ checkStringLength('проверяемая строка', 10); // false
 
 const getIsPolindrom = (string = '') => {
   const sentense = string.replaceAll(' ','').toLowerCase();
-  let reverseSentense = '';git pull academy master
+  let reverseSentense = '';
   for (let i = 0; i < sentense.length; i++) {
     reverseSentense += sentense[sentense.length - 1 - i];
   }

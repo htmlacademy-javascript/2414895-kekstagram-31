@@ -49,19 +49,18 @@ const CountMessages = {
 const countPhotos = 25;
 
 const getRandomInteger = (element) => {
-  const lower = element.hasOwnProperty("MIN") ? Math.ceil(Math.min(element.MIN, element.MAX)) : Math.ceil(Math.min(0, element.length - 1));
-  const upper = element.hasOwnProperty("MAX") ? Math.floor(Math.max(element.MIN, element.MAX)): Math.floor(Math.max(0, element.length - 1));
+  const lower = element.hasOwnProperty('MIN') ? Math.ceil(Math.min(element.MIN, element.MAX)) : Math.ceil(Math.min(0, element.length - 1));
+  const upper = element.hasOwnProperty('MAX') ? Math.floor(Math.max(element.MIN, element.MAX)) : Math.floor(Math.max(0, element.length - 1));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
 
-const createRandomIdFromRangeGenerator = (element) => {
+const createRandomIdFromRangeGenerator = () => {
   const previousValues = [];
 
   return function (element) {
     let currentValue = getRandomInteger(element);
     if (previousValues.length >= (element.MAX - element.MIN + 1)) {
-      console.error('Перебраны все числа из диапазона от ' + element.MIN + ' до ' + element.MAX);
       return null;
     }
     while (previousValues.includes(currentValue)) {
@@ -79,7 +78,7 @@ const createUrlNumber = createRandomIdFromRangeGenerator();
 const getRandomArrayElement = (element) => element[getRandomInteger(element)];
 
 const getMessage = () => {
-  let message1 = getRandomArrayElement(messages);
+  const message1 = getRandomArrayElement(messages);
   let message2 = getRandomArrayElement(messages);
   if (getRandomInteger(CountMessages) === 1) {
     return message1;
