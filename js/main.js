@@ -1,4 +1,7 @@
 import {createPhotosDescription} from './data.js';
-import './miniatures.js';
+import {createMiniature} from './miniatures.js';
+import { useFullPicture } from './useFullPictures.js';
 
-createPhotosDescription();
+const posts = createPhotosDescription();
+createMiniature(posts);
+useFullPicture(posts);
