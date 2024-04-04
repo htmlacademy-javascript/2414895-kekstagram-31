@@ -10,21 +10,21 @@ function openFullPicture () {
   document.body.classList.add('modal-open');
 
   document.addEventListener('keydown', onDocumentKeydown);
-};
+}
 
 function closeFullPicture () {
   fullPictureElement.classList.add('hidden');
   document.body.classList.remove('modal-open');
 
   document.removeEventListener('keydown', onDocumentKeydown);
-};
+}
 
 function onDocumentKeydown (evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeFullPicture();
   }
-};
+}
 
 const useFullPicture = () => {
   pictureOpenElement.addEventListener('click', () => {
@@ -40,6 +40,6 @@ const useFullPicture = () => {
   pictureCloseElement.addEventListener('click', () => {
     closeFullPicture();
   });
-}
+};
 
 export {useFullPicture};

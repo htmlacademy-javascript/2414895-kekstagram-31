@@ -38,11 +38,11 @@ const createPicture = ({url, description, likes, comments}) => {
 
     commentListFragment.append(commentElement);
   });
-  pictureComments.innerHTML = "";
+  pictureComments.innerHTML = '';
   pictureComments.append(commentListFragment);
 
   pictureCommentCount.classList.add('hidden');
   pictireCommentLoader.classList.add('hidden');
-}
+};
 
 export {createPicture};
