@@ -1,3 +1,5 @@
+import { counter } from './util';
+
 const fullPictureElement = document.querySelector('.big-picture');
 
 const pictureImg = fullPictureElement.querySelector('.big-picture__img img');
@@ -7,13 +9,13 @@ const pictureCommentShowCount = pictureCommentCount.querySelector('.social__comm
 const pictureCommentTotalCount = pictureCommentCount.querySelector('.social__comment-total-count');
 const pictureComments = fullPictureElement.querySelector('.social__comments');
 const pictureDescription = fullPictureElement.querySelector('.social__caption');
-const pictireCommentLoader = fullPictureElement.querySelector('.comments-loader');
+const pictureCommentLoader = fullPictureElement.querySelector('.comments-loader');
 
 const createPicture = ({url, description, likes, comments}) => {
   pictureImg.src = url;
   pictureDescription.textContent = description;
   pictureLike.textContent = likes;
-  pictureCommentShowCount.textContent = comments.length;
+  pictureCommentShowCount.textContent = Math.min(5, comments.length);
   pictureCommentTotalCount.textContent = comments.length;
 
   const commentForm = document.createElement('li');
@@ -29,21 +31,37 @@ const createPicture = ({url, description, likes, comments}) => {
 
   const commentListFragment = document.createDocumentFragment();
 
-  comments.forEach(({avatar, name, message}) => {
-    const commentElement = commentForm.cloneNode(true);
-    const socialPicture = commentElement.querySelector('.social__picture');
-    const socialText = commentElement.querySelector('.social__text');
-    socialPicture.src = avatar;
-    socialPicture.alt = name;
-    socialText.textContent = message;
+  const addComment = (container) => {
+    container.forEach(({avatar, name, message}) => {
+      const commentElement = commentForm.cloneNode(true);
+      const socialPicture = commentElement.querySelector('.social__picture');
+      const socialText = commentElement.querySelector('.social__text');
+      socialPicture.src = avatar;
+      socialPicture.alt = name;
+      socialText.textContent = message;
 
-    commentListFragment.append(commentElement);
+      commentListFragment.append(commentElement);
+    });
+
+    pictureComments.innerHTML = '';
+    pictureComments.append(commentListFragment);
+  };
+
+  const commentContainer = comments.slice(0, 5);
+  addComment(commentContainer);
+
+  const click = counter(2);
+  pictureCommentLoader.addEventListener('click', () => {
+    const addCommentContainer = comments.slice(0, 5 * click());
+    pictureCommentShowCount.textContent = addCommentContainer.length;
+    addComment(addCommentContainer);
+
+    const pictureCommentNew = pictureComments.querySelectorAll('.social__comment');
+
+    if (pictureCommentNew.length === comments.length) {
+      pictureCommentLoader.classList.add('hidden');
+    }
   });
-  pictureComments.innerHTML = '';
-  pictureComments.append(commentListFragment);
-
-  pictureCommentCount.classList.add('hidden');
-  pictireCommentLoader.classList.add('hidden');
 };
 
 export {createPicture};
