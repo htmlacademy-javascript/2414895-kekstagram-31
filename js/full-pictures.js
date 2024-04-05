@@ -31,10 +31,11 @@ const createPicture = ({url, description, likes, comments}) => {
 
   comments.forEach(({avatar, name, message}) => {
     const commentElement = commentForm.cloneNode(true);
-
-    commentElement.querySelector('.social__picture').src = avatar;
-    commentElement.querySelector('.social__picture').alt = name;
-    commentElement.querySelector('.social__text').textContent = message;
+    const socialPicture = commentElement.querySelector('.social__picture');
+    const socialText = commentElement.querySelector('.social__text');
+    socialPicture.src = avatar;
+    socialPicture.alt = name;
+    socialText.textContent = message;
 
     commentListFragment.append(commentElement);
   });
