@@ -29,9 +29,7 @@ const isEnterKey = (evt) => evt.key === 'Enter';
 
 const counter = (start) => {
   let i = start;
-  return () => {
-    return i++;
-  };
+  return () => i++;
 };
 
 export {getRandomInteger, createRandomIdFromRangeGenerator, getRandomArrayElement, isEscapeKey, isEnterKey, counter};
