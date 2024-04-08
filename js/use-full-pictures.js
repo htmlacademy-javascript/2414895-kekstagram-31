@@ -1,4 +1,5 @@
 import {isEscapeKey, isEnterKey} from './util.js';
+import { addCommentHandler } from './full-pictures.js';
 
 const fullPictureElement = document.querySelector('.big-picture');
 const pictureOpenElement = document.querySelector('.pictures');
@@ -26,6 +27,7 @@ function onDocumentKeydown (evt) {
 }
 
 const useFullPicture = () => {
+  addCommentHandler();
   pictureOpenElement.addEventListener('click', () => {
     openFullPicture();
   });

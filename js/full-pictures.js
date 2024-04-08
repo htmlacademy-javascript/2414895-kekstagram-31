@@ -11,7 +11,12 @@ const pictureCommentTotalCount = pictureCommentCount.querySelector('.social__com
 const pictureDescription = fullPictureElement.querySelector('.social__caption');
 const pictureCommentLoader = fullPictureElement.querySelector('.comments-loader');
 
-const createPicture = ({url, description, likes, comments}) => {
+let comments = [];
+let countClick;
+
+const createPicture = ({url, description, likes, comments: postComments}) => {
+  countClick = counter(2);
+  comments = postComments;
   pictureImg.src = url;
   pictureDescription.textContent = description;
   pictureLike.textContent = likes;
@@ -20,13 +25,14 @@ const createPicture = ({url, description, likes, comments}) => {
 
   const commentContainer = comments.slice(0, 5);
   addComment(commentContainer, comments);
+};
 
-  const click = counter(2);
+const addCommentHandler = () => {
   pictureCommentLoader.addEventListener('click', () => {
-    const addCommentContainer = comments.slice(0, 5 * click());
+    const addCommentContainer = comments.slice(0, 5 * countClick());
     pictureCommentShowCount.textContent = addCommentContainer.length;
     addComment(addCommentContainer, comments);
   });
 };
 
-export {createPicture};
+export {createPicture, addCommentHandler};
