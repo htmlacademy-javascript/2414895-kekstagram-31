@@ -43,4 +43,4 @@ const useFullPicture = () => {
   });
 };
 
-export {useFullPicture};
+export {useFullPicture, closeFullPicture};
