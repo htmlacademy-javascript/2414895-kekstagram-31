@@ -1,4 +1,5 @@
 import {createPicture} from './full-pictures';
+import { openFullPicture } from './use-full-pictures';
 
 const miniatureListElement = document.querySelector('.pictures');
 const createMiniatureTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -17,6 +18,7 @@ const createMiniature = (posts) => {
 
     miniatureElement.addEventListener('click', () => {
       createPicture({url, description, likes, comments});
+      openFullPicture();
     });
 
     miniatureListFragment.appendChild(miniatureElement);
