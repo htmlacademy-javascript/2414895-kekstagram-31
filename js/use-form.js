@@ -1,29 +1,37 @@
 import { isEscapeKey } from './util';
 import { closeFullPicture } from './use-full-pictures';
 
-const formUpload = document.querySelector('.img-upload__form')
+const formUpload = document.querySelector('.img-upload__form');
 const inputUpload = formUpload.querySelector('.img-upload__input');
 const formEdit = formUpload.querySelector('.img-upload__overlay');
 const buttonCloseForm = formEdit.querySelector('.img-upload__cancel');
+const inputHashtag = formUpload.querySelector('.text__hashtags');
+const inputText = formUpload.querySelector('.text__description');
 
 function openEditForm () {
   closeFullPicture();
   formEdit.classList.remove('hidden');
   document.body.classList.add('modal-open');
 
-  formUpload.addEventListener('focus', () => {
-    document.removeEventListener('keydown', onDocumentKeydown);
+  inputHashtag.addEventListener('keydown', (evt) => {
+    if (isEscapeKey(evt)) {
+      evt.stopPropagation();
+    }
   });
 
-  formUpload.addEventListener('blur', () => {
-    document.addEventListener('keydown', onDocumentKeydown);
-  })
+  inputText.addEventListener('keydown', (evt) => {
+    if (isEscapeKey(evt)) {
+      evt.stopPropagation();
+    }
+  });
 
   document.addEventListener('keydown', onDocumentKeydown);
 }
 
 function closeEditForm () {
   inputUpload.value = '';
+  inputHashtag.value = '';
+  inputText.value = '';
   formEdit.classList.add('hidden');
   document.body.classList.remove('modal-open');
 
