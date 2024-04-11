@@ -25,7 +25,7 @@ function validateLengthHashtags (value) {
 function validHashtag (value) {
   const hashtags = value.split(' ').filter((hashtag) => hashtag !== ' ');
   const hashtagReg = /^#[a-zа-яё0-9]{1,19}$/i;
-  return hashtagRegValid(hashtags, hashtagReg);
+  return value === '' || hashtagRegValid(hashtags, hashtagReg);
 }
 
 function uniqHashtags (value) {
