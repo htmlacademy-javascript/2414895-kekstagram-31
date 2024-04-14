@@ -1,51 +1,51 @@
 const filterList = {
   none: {
-    MIN: 0,
-    MAX: 0,
-    START: 0,
-    STEP: 0,
-    FILTER: 'none',
-    DIMENSION: ''
+    min: 0,
+    max: 0,
+    start: 0,
+    step: 0,
+    filter: 'none',
+    dimension: ''
   },
   chrome: {
-    MIN: 0,
-    MAX: 1,
-    START: 1,
-    STEP: 0.1,
-    FILTER: 'grayscale',
-    DIMENSION: ''
+    min: 0,
+    max: 1,
+    start: 1,
+    step: 0.1,
+    filter: 'grayscale',
+    dimension: ''
   },
   sepia: {
-    MIN: 0,
-    MAX: 1,
-    START: 1,
-    STEP: 0.1,
-    FILTER: 'sepia',
-    DIMENSION: ''
+    min: 0,
+    max: 1,
+    start: 1,
+    step: 0.1,
+    filter: 'sepia',
+    dimension: ''
   },
   marvin: {
-    MIN: 0,
-    MAX: 100,
-    START: 100,
-    STEP: 1,
-    FILTER: 'invert',
-    DIMENSION: '%'
+    min: 0,
+    max: 100,
+    start: 100,
+    step: 1,
+    filter: 'invert',
+    dimension: '%'
   },
   phobos: {
-    MIN: 0,
-    MAX: 3,
-    START: 3,
-    STEP: 0.1,
-    FILTER: 'blur',
-    DIMENSION: 'px'
+    min: 0,
+    max: 3,
+    start: 3,
+    step: 0.1,
+    filter: 'blur',
+    dimension: 'px'
   },
   heat: {
-    MIN: 1,
-    MAX: 3,
-    START: 3,
-    STEP: 0.1,
-    FILTER: 'brightness',
-    DIMENSION: ''
+    min: 1,
+    max: 3,
+    start: 3,
+    step: 0.1,
+    filter: 'brightness',
+    dimension: ''
   }
 };
 

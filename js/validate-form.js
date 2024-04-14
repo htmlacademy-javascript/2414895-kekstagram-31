@@ -45,8 +45,8 @@ pristine.addValidator(inputText, validateText, 'Длина комментари�
 
 const valid = () => {
   formUpload.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    pristine.validate();
+    /*evt.preventDefault();
+    pristine.validate();*/
   });
 };
 
