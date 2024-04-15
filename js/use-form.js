@@ -55,4 +55,4 @@ const useFormEdit = () => {
   });
 };
 
-export {useFormEdit};
+export {useFormEdit, closeEditForm};
