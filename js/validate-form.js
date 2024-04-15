@@ -1,6 +1,14 @@
+import { showAlert } from './util';
+import { sendData } from './api';
+
 const formUpload = document.querySelector('.img-upload__form');
 const inputHashtag = formUpload.querySelector('.text__hashtags');
 const inputText = formUpload.querySelector('.text__description');
+const submitButton = formUpload.querySelector('.img-upload__submit');
+const SubmitButtonText = {
+  IDLE: 'Сохранить',
+  SENDING: 'Сохраняю...'
+};
 
 const pristine = new Pristine(formUpload, {
   classTo: 'img-upload__field-wrapper',
@@ -43,10 +51,31 @@ pristine.addValidator(inputHashtag, validHashtag, 'Введён невалидн
 pristine.addValidator(inputHashtag, uniqHashtags, 'Хэштеги повторяются');
 pristine.addValidator(inputText, validateText, 'Длина комментария больше 140 символов');
 
-const valid = () => {
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = SubmitButtonText.SENDING;
+};
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = SubmitButtonText.IDLE;
+};
+
+const valid = (onSuccess) => {
   formUpload.addEventListener('submit', (evt) => {
-    /*evt.preventDefault();
-    pristine.validate();*/
+    evt.preventDefault();
+    const isValid = pristine.validate();
+    if (isValid) {
+      blockSubmitButton();
+      sendData(new FormData(evt.target))
+      .then(onSuccess)
+      .catch(
+        (err) => {
+          showAlert(err.message);
+        }
+      )
+      .finally(unblockSubmitButton);
+    }
   });
 };
 
